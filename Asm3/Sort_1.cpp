@@ -29,7 +29,7 @@ void selection_sort_ascending(int a[], int &n){
     }
 
 }
-
+//template
 int main() {
     int a[MAXN], n, x;
 

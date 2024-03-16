@@ -22,10 +22,10 @@ void selection_sort_ascending(int a[], int &n){
         for (int j=i+1; j<n; j++){
             if (a[j]<a[min]){
             min = j;
-            std::swap(a[i],a[j]);
+            
             }
         }
-    
+        std::swap(a[i],a[min]);
     }
 
 }

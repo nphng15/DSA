@@ -1,45 +1,55 @@
+
 #include<iostream>
-#include<bits/stdc++.h>
-#define MAXN 100000
-
-bool is_ascending(int a[],int &n){
-    for (int i=0; i<n; i++){
-        if (a[i]>a[i+1]) return 0;
-    }
-    return 1;
+#define MAXN 101
+void XuatMang(int A[], int N) {
+    for (int i = 0; i < N; i++)
+        std::cout << A[i] << '\t';
+    std::cout << std::endl;
 }
 
-void NhapMang(int a[], int &n){
-    for (int i=0; i<n; i++){
-        std::cin>>a[i];
+void NhapMang(int A[], int &n){
+    std::cin>>n;
+    for (int i=0; i<n ; i++){
+        std::cin>>A[i];
     }
+    
 }
 
-void selection_sort_ascending(int a[], int &n){
-    int min;
-    for (int i=0; i<n-1; i++){
-        min = i;
-        for (int j=i+1; j<n; j++){
-            if (a[j]<a[min]){
-            min = j;
-            std::swap(a[i],a[j]);
+void SapXep(int A[], int n){
+    for (int k=0; k<n; k++){
+        if (A[k]==0) std::swap (A[n-1],A[k]);
+    }
+    for (int i=0; i<n-2; i++){
+        if (A[i]<0){
+            for (int j=i+1; j<n-1; j++){
+                if (A[j]>0) std::swap(A[i],A[j]);
             }
         }
-    
-    }
-
+    }   
 }
 
+void SapXepSoDuongGiamAmTangVa0(int A[], int n){
+    SapXep(A,n);
+    for (int i=0; i<n-2; i++){
+        if (A[i]>0){
+            int max=A[i];
+            for (int j=i+1; j<n-1; j++){
+                if (A[j]>A[max]) max=j;
+            }
+            std::swap (A[i],A[max]);
+        // } else  {
+        //     int min=A[i];
+        //     for (int k=i+1; k<n-1; k++){
+        //         if (A[k]<A[min]) min=k;
+        //     }
+        //     std::swap (A[i],A[min]);
+        }
+    }
+}
 int main() {
-    int a[MAXN], n, x;
-
-    std::cin >> x;
-
-    NhapMang(a, x);
-
-    selection_sort_ascending(a, n);
-
-    std::cout << std::boolalpha << is_ascending(a, n);
-
+    int a[MAXN], n;
+    NhapMang(a, n);
+    SapXepSoDuongGiamAmTangVa0(a, n);
+    XuatMang(a, n);
     return 0;
 }
